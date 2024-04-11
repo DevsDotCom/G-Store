@@ -1,9 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
-<div class="container">
+@section('body')
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -16,10 +15,8 @@
 
                     <p><strong>Name : </strong>{{Auth::user()->name}}</p>
                     <p><strong>Email : </strong>{{Auth::user()->email}}</p>
-                    <a href="/admin" class="btn btn-success">Dashboard</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
