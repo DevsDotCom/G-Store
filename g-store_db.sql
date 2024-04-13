@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2024 at 11:44 PM
+-- Generation Time: Apr 13, 2024 at 03:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,13 +39,11 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'AllZ', '2024-04-11 07:50:54', '2024-04-11 11:14:05'),
-(2, 'Levies', '2024-04-11 07:51:05', '2024-04-11 07:51:57'),
-(3, 'Lacoste', '2024-04-11 07:52:24', '2024-04-11 11:14:29'),
-(4, 'Adidas', '2024-04-11 14:26:07', '2024-04-11 14:26:57'),
-(5, 'ZARA', '2024-04-11 14:26:17', '2024-04-11 14:26:17'),
-(6, 'Nike', '2024-04-11 14:27:08', '2024-04-11 14:27:08'),
-(7, 'LEE', '2024-04-11 14:27:36', '2024-04-11 14:27:36');
+(9, 'AllZ', '2024-04-13 06:20:47', '2024-04-13 06:20:47'),
+(10, 'Adidas', '2024-04-13 06:24:58', '2024-04-13 06:24:58'),
+(11, 'Lacoste', '2024-04-13 06:25:05', '2024-04-13 06:25:05'),
+(12, 'Nike', '2024-04-13 06:25:12', '2024-04-13 06:25:12'),
+(13, 'ZARA', '2024-04-13 06:25:20', '2024-04-13 06:25:20');
 
 -- --------------------------------------------------------
 
@@ -65,15 +63,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(5, 'กระเป๋าและรองเท้า', '2024-04-10 10:09:05', '2024-04-10 10:09:05'),
-(6, 'แว่นตาผู้ชาย', '2024-04-10 10:09:17', '2024-04-10 10:09:17'),
-(7, 'เครื่องใช้ไฟฟ้า', '2024-04-11 03:55:13', '2024-04-11 03:55:13'),
-(8, 'กางเกง', '2024-04-11 03:55:18', '2024-04-11 03:55:18'),
-(9, 'อุปกรณ์ไอทีและมือถือ', '2024-04-11 03:57:12', '2024-04-11 03:57:12'),
-(10, 'เฟอร์นิเจอร์', '2024-04-11 03:57:29', '2024-04-11 03:57:29'),
-(11, 'อาหาร', '2024-04-11 03:57:38', '2024-04-11 03:57:38'),
-(12, 'เครื่องดื่ม', '2024-04-11 03:57:55', '2024-04-11 03:57:55'),
-(13, 'เสื้อ', '2024-04-11 13:44:48', '2024-04-11 13:44:48');
+(20, 'เสื้อ', '2024-04-13 06:20:02', '2024-04-13 06:20:02'),
+(21, 'กางเกง', '2024-04-13 06:24:30', '2024-04-13 06:24:30'),
+(22, 'กระเป๋า', '2024-04-13 06:24:39', '2024-04-13 06:24:39'),
+(23, 'รองเท้า', '2024-04-13 06:24:43', '2024-04-13 06:24:43'),
+(24, 'เครื่องนอน', '2024-04-13 06:24:48', '2024-04-13 06:24:48');
 
 -- --------------------------------------------------------
 
@@ -115,7 +109,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (6, '2024_04_09_214110_create_products_table', 1),
 (7, '2024_04_09_214138_create_categories_table', 1),
-(8, '2024_04_09_214149_create_brands_table', 1);
+(8, '2024_04_09_214149_create_brands_table', 1),
+(9, '2024_04_12_182641_add_admin_column', 2);
 
 -- --------------------------------------------------------
 
@@ -184,9 +179,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `price`, `stock`, `category_id`, `brand_id`, `created_at`, `updated_at`) VALUES
-(1, 'เสื้อ', 'เสื้อสำหรับคุณผู้ชาย', 'XzE3MTI4Njg4NDU=.jpg', 1200.00, 20, 13, 1, '2024-04-11 13:54:05', '2024-04-11 13:54:05'),
-(2, 'กางเกง', 'กางเกงสำหรับคุณผู้หญิง', 'XzE3MTI4NzA2MDE=.jpg', 2000.00, 20, 5, 2, '2024-04-11 14:23:22', '2024-04-11 14:23:22'),
-(3, 'กระเป๋า', 'กระเป๋าสำหรับคุณผู้หญิง', 'XzE3MTI4NzA2ODI=.jpg', 4000.00, 30, 5, 3, '2024-04-11 14:24:42', '2024-04-11 14:24:42');
+(8, 'เสื้อผู้ชาย', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTQ1NTc=.jpg', 1200.00, 20, 20, 9, '2024-04-13 06:22:37', '2024-04-13 06:32:23'),
+(9, 'กางเกง', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTQ3NjA=.jpg', 500.00, 30, 21, 13, '2024-04-13 06:26:00', '2024-04-13 06:26:00'),
+(10, 'กระเป๋า', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTQ5NjM=.jpg', 2000.00, 30, 22, 11, '2024-04-13 06:29:23', '2024-04-13 06:29:23'),
+(11, 'รองเท้า', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTUwMzg=.jpg', 900.00, 50, 23, 12, '2024-04-13 06:30:38', '2024-04-13 06:30:38'),
+(12, 'หมอน', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTUwODA=.jpg', 1500.00, 50, 24, 13, '2024-04-13 06:31:20', '2024-04-13 06:31:20');
 
 -- --------------------------------------------------------
 
@@ -197,6 +194,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `image`, `price`, `stock`, 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
+  `isAdmin` tinyint(1) NOT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -209,8 +207,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@example.com', NULL, '$2y$10$x0qStNsX44F06uoY/ktyZeTwWbW0RJ9dzXab0vtKK93HFYi4OHUNq', NULL, '2024-04-10 04:36:50', '2024-04-10 04:36:50');
+INSERT INTO `users` (`id`, `name`, `isAdmin`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 1, 'admin@example.com', NULL, '$2y$10$x0qStNsX44F06uoY/ktyZeTwWbW0RJ9dzXab0vtKK93HFYi4OHUNq', NULL, '2024-04-10 04:36:50', '2024-04-10 04:36:50');
 
 --
 -- Indexes for dumped tables
@@ -282,13 +280,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -300,7 +298,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -312,7 +310,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -34,6 +34,7 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Category Name</th>
+                        <th scope="col">Product Count</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -43,6 +44,7 @@
                     <tr>
                         <th scope="row">{{ $category->id }}</th>
                         <td>{{ $category->name }}</td>
+                        <td>{{ $category->products->count() }}</td>
                         <td><a href="/admin/editCategory/{{ $category->id }}" class="btn btn-primary">Edit</a></td>
                         <td><a 
                             href="/admin/deleteCategory/{{ $category->id }}" class="btn btn-danger"
@@ -55,7 +57,5 @@
 
             {{ $categories->links() }}
         </div>
-    @else 
-        <div class="alert alert-danger my-3">There is no categories information.</div>
     @endif
 @endsection

@@ -42,10 +42,12 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
+        Session()->flash('success', 'Add complete!');
+
         return redirect('/admin/Category');
     }
 
-
+    
     public function edit($id) {
         // dd($id);
 
@@ -76,6 +78,8 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
+        Session()->flash('success', 'Edit complete!');
+
         return redirect('admin/Category');
     }
 
@@ -83,7 +87,17 @@ class CategoryController extends Controller
     public function delete($id) {
         // dd($id);
 
-        Category::destroy($id);
+        $category = Category::find($id);
+
+        if ($category->products->count() > 0) {
+            Session()->flash('danger', 'Cannot be deleted Because there are some products in this category!');
+            return redirect()->back();
+        }
+
+        // Category::destroy($id);
+        $category::destroy($id);
+
+        Session()->flash('success', 'Delete complete!');
 
         return redirect('admin/Category');
     }

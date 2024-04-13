@@ -34,6 +34,7 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Brand Name</th>
+                        <th scope="col">Product Count</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -43,6 +44,7 @@
                     <tr>
                         <th scope="row">{{ $brand->id }}</th>
                         <td>{{ $brand->name }}</td>
+                        <td>{{ $brand->products->count() }}</td>
                         <td><a href="/admin/editBrand/{{ $brand->id }}" class="btn btn-primary">Edit</a></td>
                         <td><a 
                             href="/admin/deleteBrand/{{ $brand->id }}" class="btn btn-danger"
@@ -55,7 +57,5 @@
 
             {{ $brands->links() }}
         </div>
-    @else 
-        <div class="alert alert-danger my-3">There is no brands information.</div>
     @endif
 @endsection

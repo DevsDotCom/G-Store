@@ -5,7 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                {{-- <div class="card-header">{{ __('Dashboard') }}</div> --}}
+                <div class="card-header">Home</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -16,7 +17,12 @@
 
                     <p><strong>Name : </strong>{{Auth::user()->name}}</p>
                     <p><strong>Email : </strong>{{Auth::user()->email}}</p>
-                    <a href="/admin" class="btn btn-success">Dashboard</a>
+                    @if (Auth::user()->checkIsAdmin())
+                        <a href="/" class="btn btn-success">{{ config('app.name', 'Laravel') }}</a>
+                        <a href="/admin" class="btn btn-primary">Dashboard</a>
+                    @else
+                        <a href="/" class="btn btn-success">{{ config('app.name', 'Laravel') }}</a>
+                    @endif
                 </div>
             </div>
         </div>

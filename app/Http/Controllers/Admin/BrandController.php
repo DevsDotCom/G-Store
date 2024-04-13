@@ -9,17 +9,14 @@ use App\Models\Brand;
 
 class BrandController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         $brands = Brand::paginate(5);
 
         return view('admin.Brand', ['brands' => $brands]);
     }
 
 
-    public function insert(Request $request)
-    {
-        // dd($request->name);
+    public function insert(Request $request) {
 
         $request->validate([
             // 'name' => 'required|unique:brands|max:50',
@@ -36,13 +33,13 @@ class BrandController extends Controller
         $brand->name = $request->name;
         $brand->save();
 
+        Session()->flash('success', 'Add complete!');
+
         return redirect('/admin/Brand');
     }
 
 
-    public function edit($id)
-    {
-        // dd($id);
+    public function edit($id) {
 
         $brand = Brand::find($id);
         // dd($brand);
@@ -51,9 +48,7 @@ class BrandController extends Controller
     }
 
 
-    public function update(Request $request)
-    {
-        // dd($request);
+    public function update(Request $request) {
 
         $request->validate([
             // 'name' => 'required|unique:brands|max:50',
@@ -70,15 +65,24 @@ class BrandController extends Controller
         $brand->name = $request->name;
         $brand->save();
 
+        Session()->flash('success', 'Edit complete!');
+
         return redirect('admin/Brand');
     }
 
 
-    public function delete($id)
-    {
-        // dd($id);
+    public function delete($id) {
 
-        Brand::destroy($id);
+        $brand = Brand::find($id);
+
+        if ($brand->products->count() > 0) {
+            Session()->flash('danger', 'Cannot be deleted Because there are some products in this Brand!');
+            return redirect()->back();
+        }
+
+        $brand::destroy($id);
+
+        Session()->flash('success', 'Delete complete!');
 
         return redirect('admin/Brand');
     }
