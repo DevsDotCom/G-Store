@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -31,6 +33,8 @@ Route::middleware(['auth', 'verifyIsAdmin'])->group(function () {
     Route::post('/admin/Category', [App\Http\Controllers\Admin\CategoryController::class, 'insert']);
     Route::get('/admin/editCategory/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit']);
     Route::post('/admin/updateCategory', [App\Http\Controllers\Admin\CategoryController::class, 'update']);
+    Route::get('/admin/editCategoryImage/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'editImage']);
+    Route::post('/admin/updateCategoryImage', [App\Http\Controllers\Admin\CategoryController::class, 'updateImage']);
     Route::get('/admin/deleteCategory/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'delete']);
 
     // Brand

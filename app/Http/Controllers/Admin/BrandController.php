@@ -19,13 +19,7 @@ class BrandController extends Controller
     public function insert(Request $request) {
 
         $request->validate([
-            // 'name' => 'required|unique:brands|max:50',
-            'name' =>
-            [
-                'required',
-                'unique:brands',
-                'max:50',
-            ],
+            'name' => 'required|unique:brands|max:50',
         ]);
 
         // Insert

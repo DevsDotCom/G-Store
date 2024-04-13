@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2024 at 03:33 PM
+-- Generation Time: Apr 13, 2024 at 08:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,6 +54,7 @@ INSERT INTO `brands` (`id`, `name`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -62,12 +63,13 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(20, 'เสื้อ', '2024-04-13 06:20:02', '2024-04-13 06:20:02'),
-(21, 'กางเกง', '2024-04-13 06:24:30', '2024-04-13 06:24:30'),
-(22, 'กระเป๋า', '2024-04-13 06:24:39', '2024-04-13 06:24:39'),
-(23, 'รองเท้า', '2024-04-13 06:24:43', '2024-04-13 06:24:43'),
-(24, 'เครื่องนอน', '2024-04-13 06:24:48', '2024-04-13 06:24:48');
+INSERT INTO `categories` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUES
+(25, 'Clothes', 'XzE3MTMwMjU0MTE=.jpg', '2024-04-13 09:23:31', '2024-04-13 09:23:31'),
+(26, 'Bags', 'XzE3MTMwMjU2MTc=.jpg', '2024-04-13 09:26:57', '2024-04-13 09:26:57'),
+(27, 'Shoes', 'XzE3MTMwMjU5NDg=.jpg', '2024-04-13 09:32:28', '2024-04-13 09:32:28'),
+(28, 'Men', 'XzE3MTMwMjU5ODk=.jpg', '2024-04-13 09:33:09', '2024-04-13 11:13:45'),
+(29, 'Women', 'XzE3MTMwMzIxMDU=.jpg', '2024-04-13 11:15:05', '2024-04-13 11:15:05'),
+(30, 'Kids', 'XzE3MTMwMzIxNjE=.jpg', '2024-04-13 11:16:01', '2024-04-13 11:16:01');
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2024_04_09_214110_create_products_table', 1),
 (7, '2024_04_09_214138_create_categories_table', 1),
 (8, '2024_04_09_214149_create_brands_table', 1),
-(9, '2024_04_12_182641_add_admin_column', 2);
+(9, '2024_04_12_182641_add_admin_column', 2),
+(10, '2024_04_13_161430_add_categories_column', 3);
 
 -- --------------------------------------------------------
 
@@ -179,11 +182,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `price`, `stock`, `category_id`, `brand_id`, `created_at`, `updated_at`) VALUES
-(8, 'เสื้อผู้ชาย', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTQ1NTc=.jpg', 1200.00, 20, 20, 9, '2024-04-13 06:22:37', '2024-04-13 06:32:23'),
-(9, 'กางเกง', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTQ3NjA=.jpg', 500.00, 30, 21, 13, '2024-04-13 06:26:00', '2024-04-13 06:26:00'),
-(10, 'กระเป๋า', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTQ5NjM=.jpg', 2000.00, 30, 22, 11, '2024-04-13 06:29:23', '2024-04-13 06:29:23'),
-(11, 'รองเท้า', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTUwMzg=.jpg', 900.00, 50, 23, 12, '2024-04-13 06:30:38', '2024-04-13 06:30:38'),
-(12, 'หมอน', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTUwODA=.jpg', 1500.00, 50, 24, 13, '2024-04-13 06:31:20', '2024-04-13 06:31:20');
+(8, 'เสื้อผู้ชาย', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTQ1NTc=.jpg', 1200.00, 20, 25, 9, '2024-04-13 06:22:37', '2024-04-13 09:25:18'),
+(9, 'กางเกง', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTQ3NjA=.jpg', 500.00, 30, 25, 13, '2024-04-13 06:26:00', '2024-04-13 09:25:27'),
+(10, 'กระเป๋า', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTQ5NjM=.jpg', 2000.00, 30, 25, 11, '2024-04-13 06:29:23', '2024-04-13 09:25:36'),
+(11, 'รองเท้า', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTUwMzg=.jpg', 900.00, 50, 25, 12, '2024-04-13 06:30:38', '2024-04-13 09:25:43'),
+(12, 'หมอน', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMTUwODA=.jpg', 1500.00, 50, 25, 13, '2024-04-13 06:31:20', '2024-04-13 09:25:52'),
+(13, 'เสื้อ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'XzE3MTMwMjQ1Nzg=.jpg', 900.00, 30, 25, 9, '2024-04-13 09:09:38', '2024-04-13 09:26:10'),
+(14, 'กระเป๋าผู้หญิง', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptatem eveniet similique impedit illo quisquam quasi perspiciatis vero architecto qui eos nisi enim, itaque, debitis ut quis ratione cupiditate quibusdam.', 'XzE3MTMwMjYwODU=.png', 1500.00, 50, 29, 9, '2024-04-13 09:34:45', '2024-04-13 11:23:12'),
+(15, 'หมวก', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptatem eveniet similique impedit illo quisquam quasi perspiciatis vero architecto qui eos nisi enim, itaque, debitis ut quis ratione cupiditate quibusdam.', 'XzE3MTMwMzIyOTk=.jpg', 900.00, 50, 25, 9, '2024-04-13 11:18:19', '2024-04-13 11:32:23');
 
 -- --------------------------------------------------------
 
@@ -286,7 +292,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -298,7 +304,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -310,7 +316,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`

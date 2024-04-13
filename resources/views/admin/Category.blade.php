@@ -15,13 +15,17 @@
     <div class="table-responsive">
         <h2>Add Category</h2>
 
-        <form action="/admin/Category" method="post">
+        <form action="/admin/Category" method="post" enctype="multipart/form-data">
 
             {{ csrf_field() }}
 
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Category Name">
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control" name="image" id="image">
             </div>
             <button type="submit" name="submit" class="btn btn-success">Add</button>
         </form>
@@ -33,8 +37,10 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Category Name</th>
                         <th scope="col">Product Count</th>
+                        <th scope="col">Edit Image</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -43,8 +49,10 @@
                     @foreach ($categories as $category)
                     <tr>
                         <th scope="row">{{ $category->id }}</th>
+                        <td><img src="{{ asset('storage') }}/category_image/{{ $category->image }}" alt="" width="150px" height="150px"></td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->products->count() }}</td>
+                        <td><a href="/admin/editCategoryImage/{{ $category->id }}" class="btn btn-info">Edit Image</a></td>
                         <td><a href="/admin/editCategory/{{ $category->id }}" class="btn btn-primary">Edit</a></td>
                         <td><a 
                             href="/admin/deleteCategory/{{ $category->id }}" class="btn btn-danger"
