@@ -13,20 +13,20 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Auth::routes();
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
 Route::middleware(['auth', 'verifyIsAdmin'])->group(function () {
-    
     // Dashboard
-    Route::get('/admin/', [App\Http\Controllers\Admin\AdminController::class, 'index']);
+    Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'index']);
     
     // Category
     Route::get('/admin/Category', [App\Http\Controllers\Admin\CategoryController::class, 'index']);
@@ -55,3 +55,20 @@ Route::middleware(['auth', 'verifyIsAdmin'])->group(function () {
     Route::get('/admin/deleteProduct/{id}', [App\Http\Controllers\Admin\ProductController::class, 'delete']);
 });
 
+
+// Frontend
+Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
+Route::get('/about', [App\Http\Controllers\Frontend\FrontendController::class, 'about']);
+Route::get('/contact', [App\Http\Controllers\Frontend\FrontendController::class, 'contact']);
+
+// Frontend-Product
+Route::get('/productView/{product_id}', [App\Http\Controllers\Frontend\ProductController::class, 'productView']);
+Route::get('/productByCategory/{category_id}', [App\Http\Controllers\Frontend\ProductController::class, 'productByCategory']);
+Route::get('/productByBrand/{brand_id}', [App\Http\Controllers\Frontend\ProductController::class, 'productByBrand']);
+
+Route::middleware(['auth'])->group(function () {
+    // Frontend-Cart
+    Route::get('/addToCart/{product_id}', [App\Http\Controllers\Frontend\CartController::class, 'addToCart']);
+    Route::get('/cart', [App\Http\Controllers\Frontend\CartController::class, 'showCart']);
+    Route::get('/cart/deleteCart/{id}', [App\Http\Controllers\Frontend\CartController::class, 'deleteCart']);
+});

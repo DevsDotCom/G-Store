@@ -29,7 +29,7 @@
                     @foreach ($products as $product)
                         <tr>
                             <th scope="row">{{ $product->id }}</th>
-                            <td><img src="{{ asset('storage') }}/product_image/{{ $product->image }}" alt="" width="150px" height="150px"></td>
+                            <td><img src="{{ asset('storage') }}/product_image/{{ $product->image }}" alt="" width="120px" height="120px"></td>
                             <td>{{ $product->name }}</td>
                             <td>{{ Str::limit($product->description, 80, '...') }}</td>
                             <td>{{ $product->category->name }}</td>
