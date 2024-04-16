@@ -51,24 +51,35 @@
             <div class="mt-4 flex items-baseline gap-3">
                 <span class="text-primary font-semibold text-xl">฿ {{ number_format($product->price) }}</span>
             </div>
+
+            @foreach ($cartItems as $key => $value)
+                KEY : {{ $key }}
+            @endforeach
+
             <!-- quantity -->
             <div class="mt-4">
                 <h3 class="text-base text-gray-800 mb-1">Quantity</h3>
                 <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                    <div class="h-8 w-10 flex items-center justify-center">1</div>
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
+                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+                        <a class="cart_quantity_up" href="/cart/decrementCart/{{ $product->id }}">-</a>
+                    </div>
+                    <div class="h-8 w-10 flex items-center justify-center">{{ $cartItems->items[$product->id]['quantity'] }}</div>
+                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+                        <a class="cart_quantity_up" href="/cart/incrementCart/{{ $product->id }}">+</a>
+                    </div>
                 </div>
             </div>
+
             <!-- color end -->
             <!-- add to cart button -->
             <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6">
-                <a href="#" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase 
+                <a href="/addToCart/{{ $product->id }}" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase 
                     hover:bg-transparent hover:text-primary transition text-sm flex items-center">
                     <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Add to cart
                 </a>
             </div>
             <!-- add to cart button end -->
+
             <!-- product share icons -->
             <div class="flex space-x-3 mt-4">
                 <a href="#"
@@ -125,10 +136,10 @@
                                 <img src="{{ asset('storage/product_image') }}/{{ $productByCategory->image }}" class="w-full">
                                 <div
                                     class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                                    <a href="/productView/{{ $productByCategory->id }}"
-                                        class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                        <i class="fas fa-search"></i>
-                                    </a>
+                            <a href="/productView/{{ $product->id }}"
+                                class="text-white text-lg w-12 h-12 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                                <i class="ri-shopping-cart-2-line text-2xl"></i>
+                            </a>
                                 </div>
                             </div>
                             <!-- product image end -->
@@ -145,7 +156,7 @@
                             </div>
                             <!-- product content end -->
                             <!-- product button -->
-                            <a href="#"
+                            <a href="/addToCart/{{ $productByCategory->id }}"
                                 class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
                                 Add to Cart
                             </a>

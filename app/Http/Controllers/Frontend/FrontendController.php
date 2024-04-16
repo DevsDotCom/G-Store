@@ -7,27 +7,34 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Session;
 use App\Models\Category;
-use App\Models\Brand;
 use App\Models\Product;
 
 class FrontendController extends Controller {
 
     public function index() {
-        $cart = Session::get('cart'); // ดึงข้อมูลตะกร้าสินค้า
 
         return view('frontend.index', [
-            'cartItems' => $cart,
-            'products' => Product::all()->sortByDesc('id'),
+            'cartItems' => Session::get('cart'),
             'categories' => Category::all(),
-            'brands' => Brand::all()
+            'products' => Product::all()->sortByDesc('id'),
         ]);
     }
 
+
     public function about() {
-        return view('frontend.about', ['categories' => Category::all()]);
+
+        return view('frontend.about', [
+            'cartItems' => Session::get('cart'),
+            'categories' => Category::all(),
+        ]);
     }
 
+
     public function contact() {
-        return view('frontend.contact', ['categories' => Category::all()]);
+
+        return view('frontend.contact', [
+            'cartItems' => Session::get('cart'),
+            'categories' => Category::all(),
+        ]);
     }
 }

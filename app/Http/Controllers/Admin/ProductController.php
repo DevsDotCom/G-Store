@@ -86,7 +86,7 @@ class ProductController extends Controller
             'category' => 'required',
             'brand' => 'required',
             'price' => 'required|numeric',
-            'stock' => 'required|numeric'
+            'stock' => 'required|numeric',
         ]);
 
         // Update

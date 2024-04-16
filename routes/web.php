@@ -68,7 +68,10 @@ Route::get('/productByBrand/{brand_id}', [App\Http\Controllers\Frontend\ProductC
 
 Route::middleware(['auth'])->group(function () {
     // Frontend-Cart
+    Route::get('/cart', [App\Http\Controllers\Frontend\CartController::class, 'cart']);
     Route::get('/addToCart/{product_id}', [App\Http\Controllers\Frontend\CartController::class, 'addToCart']);
-    Route::get('/cart', [App\Http\Controllers\Frontend\CartController::class, 'showCart']);
     Route::get('/cart/deleteCart/{id}', [App\Http\Controllers\Frontend\CartController::class, 'deleteCart']);
+    Route::get('/cart/incrementCart/{id}', [App\Http\Controllers\Frontend\CartController::class, 'incrementCart']);
+    Route::get('/cart/decrementCart/{id}', [App\Http\Controllers\Frontend\CartController::class, 'decrementCart']);
+    Route::post('/cart/addQuantityToCart', [App\Http\Controllers\Frontend\CartController::class, 'addQuantityToCart']);
 });

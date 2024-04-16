@@ -86,7 +86,6 @@
                 </div>
                 <!-- single product end -->
             @endforeach
- 
         </div>
         <!-- product wrapper end -->
     </div>

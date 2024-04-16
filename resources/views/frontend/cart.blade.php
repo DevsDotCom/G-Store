@@ -32,24 +32,38 @@
                         class="flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
                         <!-- cart image -->
                         <div class="w-32 flex-shrink-0">
-                            <img src="{{asset('storage')}}/product_image/{{ $item['data']['image'] }}" class="w-full">
+                            <a href="/productView/{{ $item['data']['id'] }}">
+                                <img src="{{asset('storage')}}/product_image/{{ $item['data']['image'] }}" class="w-full">
+                            </a>
                         </div>
                         <!-- cart image end -->
                         <!-- cart content -->
                         <div class="md:w-1/3 w-full">
                             <h2 class="text-gray-800 mb-3 xl:text-xl textl-lg font-medium uppercase">
-                                {{ $item['data']['name'] }}
+                                <a href="/productView/{{ $item['data']['id'] }}">
+                                    <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                        {{ $item['data']['name'] }}
+                                    </h4>
+                                </a>
                             </h2>
                             <p class="text-primary font-semibold">฿ {{ number_format($item['data']['price']) }}</p>
                         </div>
                         <!-- cart content end -->
+
                         <!-- cart quantity -->
                         <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300">
-                            <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                                <input type="text" name="quantity" value="{{ $item['quantity'] }}" class="h-8 w-10 flex items-center justify-center">
-                            <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
+                            <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+                                <a class="cart_quantity_up" href="/cart/decrementCart/{{$item['data']['id']}}">-</a>
+                            </div>
+
+                            <div class="h-8 w-10 flex items-center justify-center">{{ $item['quantity'] }}</div>
+
+                            <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+                                <a class="cart_quantity_up" href="/cart/incrementCart/{{$item['data']['id']}}">+</a>
+                            </div>
                         </div>
                         <!-- cart quantity end -->
+
                         <div class="ml-auto md:ml-0">
                             <p class="text-primary text-base font-semibold">฿ {{ number_format($item['totalSinglePrice']) }}</p>
                         </div>

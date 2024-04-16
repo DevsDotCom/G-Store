@@ -12,8 +12,24 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request, $id)
-    {
+
+    public function cart() {
+
+        $cart = Session::get('cart');
+
+        if ($cart) {
+            return view('frontend.cart', [
+                'cartItems' => $cart, 
+                'categories' => Category::all(),
+            ]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+
+    public function addToCart(Request $request, $id) {
+
         $categories = Category::all();
 
         // ค้นข้อมูลสินค้า
@@ -29,48 +45,13 @@ class CartController extends Controller
         $request->session()->put('cart', $cart);
         // dump($cart); // Check Value
 
-        return redirect('/');
+        return redirect('/cart');
         // return view('frontend.cart', ['categories' => $categories]);
     }
 
-    public function addQuantityToCart(Request $request)
-    {
-        // dd($request->_id, $request->quantity); // Check Value
 
-        $id = $request->_id;
-        $quantity = $request->quantity;
+    public function deleteCart(Request $request, $id) {
 
-        // ค้นข้อมูลสินค้า
-        $product = Product::find($id);
-        // dd($product); Check Value
-
-        $prevCart = $request->session()->get('cart');
-        $cart = new Cart($prevCart);
-        // $cart->addItem($id, $product); // addItem() เป็นการเพิ่มสินค้าทีละ 1 ชิ้น
-        $cart->addQuantity($id, $product, $quantity); // addQuantity() เป็นการเพิ่มสินค้าตามจำนวนที่ลูกค้ากรอกเข้ามา
-        $cart->updatePriceQuantity();
-
-        // อัพเดทตะกร้าสินค้า
-        $request->session()->put('cart', $cart);
-        // dump($cart); // Check Value
-
-        return redirect('/products/cart');
-    }
-
-    public function showCart()
-    {
-
-        $cart = Session::get('cart'); // ดึงข้อมูลตะกร้าสินค้า
-
-        if ($cart) {
-            return view('frontend.cart', ['cartItems' => $cart, 'categories' => Category::all()]);
-        } else {
-            return redirect('/');
-        }
-    }
-
-    public function deleteCart(Request $request, $id)
-    {
         $cart = $request->session()->get('cart');
 
         if (array_key_exists($id, $cart->items)) {
@@ -88,8 +69,9 @@ class CartController extends Controller
         return redirect('/cart');
     }
 
-    public function incrementCart(Request $request, $id)
-    {
+
+    public function incrementCart(Request $request, $id) {
+
         // ค้นข้อมูลสินค้า
         $product = Product::find($id);
         // dd($product); Check Value
@@ -102,11 +84,12 @@ class CartController extends Controller
         $request->session()->put('cart', $cart);
         // dump($cart); // Check Value
 
-        return redirect('/products/cart');
+        return redirect('/cart');
     }
 
-    public function decrementCart(Request $request, $id)
-    {
+
+    public function decrementCart(Request $request, $id) {
+
         // ค้นข้อมูลสินค้า
         $product = Product::find($id);
         // dd($product); Check Value
@@ -125,8 +108,32 @@ class CartController extends Controller
             $cart->updatePriceQuantity();
             $request->session()->put('cart', $cart);
         } else {
-            session()->flash('warning', 'ต้องมีสินค้าอย่างน้อย 1 รายการ');
+            session()->flash('warning', 'There must be at least 1 item in the cart.');
         }
+
+        return redirect('/cart');
+    }
+
+
+    public function addQuantityToCart(Request $request) {
+        // dd($request->_id, $request->quantity); // Check Value
+
+        $id = $request->_id;
+        $quantity = $request->quantity;
+
+        // ค้นข้อมูลสินค้า
+        $product = Product::find($id);
+        // dd($product); Check Value
+
+        $prevCart = $request->session()->get('cart');
+        $cart = new Cart($prevCart);
+        // $cart->addItem($id, $product); // addItem() เป็นการเพิ่มสินค้าทีละ 1 ชิ้น
+        $cart->addQuantity($id, $product, $quantity); // addQuantity() เป็นการเพิ่มสินค้าตามจำนวนที่ลูกค้ากรอกเข้ามา
+        $cart->updatePriceQuantity();
+
+        // อัพเดทตะกร้าสินค้า
+        $request->session()->put('cart', $cart);
+        // dump($cart); // Check Value
 
         return redirect('/products/cart');
     }

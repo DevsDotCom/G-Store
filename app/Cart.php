@@ -42,6 +42,20 @@ class Cart
     } else {
       $productToAdd = ['quantity' => 1, 'totalSinglePrice' => $price, 'data' => $product];
     }
+    /*
+      items[
+              11 => [
+                      'quantity' => 2,
+                      'totalSinglePrice' => 1,800,
+                      'data' => { products }
+                    ],
+              15 => [
+                      'quantity' => 1,
+                      'totalSinglePrice' => 1,500,
+                      'data' => { products }
+                    ]
+          ];
+    */
 
     $this->items[$id] = $productToAdd;
     $this->totalQuantity++;
